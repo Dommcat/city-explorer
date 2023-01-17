@@ -11,7 +11,8 @@ class App extends React.Component{
       city: '',
       cityData: [],
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      mapUrl:''
     }
   }
 
@@ -43,6 +44,13 @@ class App extends React.Component{
         error: false
       })
 
+  //     let mapurl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}zoom=10`
+
+  // let citymapFromAxios = await axios.get(mapurl)
+  //   this.setState ({
+  //     mapUrl:citymapFromAxios
+  //   })
+  //     console.log(mapurl)
 
       //  *** FOR YOUR LAB YOU WILL NEED TO GET A MAP IMAGE SRC. Example: ***
     // ** `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=47.6038321,-122.3300624&zoom=10`
@@ -54,7 +62,13 @@ class App extends React.Component{
         errorMessage: error.message
       })
     }
+    let mapurl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}zoom=10`
 
+    let citymapFromAxios = await axios.get(mapurl)
+      this.setState ({
+        mapUrl:citymapFromAxios
+      })
+        console.log(mapurl)
   }
 
   render(){
@@ -78,8 +92,9 @@ class App extends React.Component{
           : 
           <>
           <p>{this.state.cityData.display_name}</p>
-        <p>lat: {this.state.cityData.lat}</p>
-        <p>lon: {this.state.cityData.lon}</p>
+        <p>latitude: {this.state.cityData.lat}</p>
+        <p>longitude: {this.state.cityData.lon}</p>
+        <img src ={this.state.mapUrl} alt="map"/>
 </>
         }
 
