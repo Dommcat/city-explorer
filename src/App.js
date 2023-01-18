@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
-
+import Card from 'react-bootstrap/Card';
 
 class App extends React.Component{
   constructor(props){
@@ -12,9 +12,12 @@ class App extends React.Component{
       cityData: [],
       error: false,
       errorMessage: '',
-      mapUrl:''
+      mapUrl:'',
+     
     }
+ 
   }
+
 
 
   // *** CITY DATA DEMO HANDLERS ***
@@ -37,23 +40,24 @@ class App extends React.Component{
 
       console.log(url);
       let cityDataFromAxios = await axios.get(url)
-      // console.log(cityDataFromAxios.data)
+      console.log(cityDataFromAxios.data[0])
       // TODO: save that data to state
       this.setState({
         cityData: cityDataFromAxios.data[0],
-        error: false
+        error: false,
+        map:`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${cityDataFromAxios.data[0].lat},${cityDataFromAxios.data[0].lon}zoom=10`
       })
 
-  //     let mapurl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}zoom=10`
 
-  // let citymapFromAxios = await axios.get(mapurl)
-  //   this.setState ({
-  //     mapUrl:citymapFromAxios
-  //   })
-  //     console.log(mapurl)
 
-      //  *** FOR YOUR LAB YOU WILL NEED TO GET A MAP IMAGE SRC. Example: ***
+
+
+    //    *** FOR YOUR LAB YOU WILL NEED TO GET A MAP IMAGE SRC. Example: ***
     // ** `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=47.6038321,-122.3300624&zoom=10`
+
+
+
+
 
     } catch (error) {
       console.log(error);
@@ -62,7 +66,7 @@ class App extends React.Component{
         errorMessage: error.message
       })
     }
-    let mapurl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}zoom=10`
+    let mapurl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_API_KEY}&center=${this.state.cityData.lat},${this.state.cityData.lon}&zoom=10`
 
     let citymapFromAxios = await axios.get(mapurl)
       this.setState ({
@@ -91,12 +95,36 @@ class App extends React.Component{
           ? <p>{this.state.errorMessage}</p>
           : 
           <>
-          <p>{this.state.cityData.display_name}</p>
-        <p>latitude: {this.state.cityData.lat}</p>
-        <p>longitude: {this.state.cityData.lon}</p>
-        <img src ={this.state.mapUrl} alt="map"/>
+          
+        <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src={this.state.map}/>
+      <Card.Body>
+        <Card.Title>{this.state.cityData.display_name}</Card.Title>
+        <Card.Text>
+        latitude: {this.state.cityData.lat}<br />
+
+        longitude: {this.state.cityData.lon}
+        </Card.Text>
+          </Card.Body>
+    </Card>
+
+
 </>
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         {/* <form>
           <button onClick={this.handleGetPokemon}>Gotta catch them all!</button>
