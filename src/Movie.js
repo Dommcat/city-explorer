@@ -11,7 +11,7 @@ class Movie extends React.Component {
             <>
               <p className="movietitle">{movie.title}</p>
               <p>{movie.description}</p>
-              <img 
+              <img src={movie.imageurl} alt={movie.title}/>
             </>
           )
         })}

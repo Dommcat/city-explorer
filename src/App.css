@@ -2,23 +2,30 @@
   text-align: center;
 }
 
-card {color: bisque;
+card {
+  color: bisque;
 
 }
 
-form {background-color: aqua;}
-main{color: bisque;
+form {
+  background-color: aqua;
+}
+
+main {
+  color: bisque;
 
 }
 
-.movietitle{
-  color:yellow;
+.movietitle {
+  color: yellow;
 }
 
 
-body {background-color: blue;
+body {
+  background-color: blue;
 
 }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -49,6 +56,7 @@ body {background-color: blue;
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
