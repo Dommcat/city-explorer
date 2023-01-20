@@ -2,9 +2,23 @@
   text-align: center;
 }
 
+card {color: bisque;
+
+}
+
+form {background-color: aqua;}
+main{color: bisque;
+
+}
+
+.movietitle{
+  color:yellow;
+}
 
 
+body {background-color: blue;
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -24,7 +38,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: blueviolet;
 }
 
 .App-link {
