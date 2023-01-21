@@ -1,5 +1,5 @@
 import React from "react";
-
+import SingleMovie from "./SingleMovie";
 
 class Movie extends React.Component {
   render() {
@@ -9,9 +9,7 @@ class Movie extends React.Component {
         {this.props.moviedata.map(movie => {
           return (
             <>
-              <p className="movietitle">{movie.title}</p>
-              <p>{movie.description}</p>
-              <img src={movie.imageurl} alt={movie.title}/>
+              <SingleMovie movie={movie} />
             </>
           )
         })}
